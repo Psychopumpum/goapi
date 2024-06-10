@@ -19,33 +19,39 @@ func NewPsychopumpumApi(apikey string) *GoApi {
     return client
 }
 
-func (self *GoApi) request(path string, params map[string]string) *Server {
+func (self *GoApi) Get(path string, params map[string]string) map[string]interface{} {
     fullUrl := self.urlEncode(self.BaseURL, path, params)
-    server := NewServer(Options{
+    client := NewServer(Options{
         Url: fullUrl,
         Headers: map[string]string{
             "Authorization": self.Apikey,
         },
     })
-    return server
+    res, err := client.Get().Exec()
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    var result map[string]interface{}
+    body, _ := res.Content()
+    json.NewDecoder(bytes.NewReader(body)).Decode(&result)
+    return result
+}
+
+func (self *GoApi) InstagramProfile(username string) map[string]interface{} {
+    return self.Get("instagram/post/", map[string]string{
+        "username": username,
+    })
 }
 
 func (self *GoApi) InstagramPost(url string) map[string]interface{} {
-    cl := self.request("instagram/post/", map[string]string{
+    return self.Get("instagram/post/", map[string]string{
         "url": url,
     })
-    res, err := cl.Get().Exec()
-    if err != nil {
-        log.Fatal(err)
-    }
-    var result map[string]interface{}
-    body, err := res.Content()
-    if err != nil {
-        log.Fatal(err)
-    }
-    err = json.NewDecoder(bytes.NewReader(body)).Decode(&result)
-    if err != nil {
-        log.Fatal(err)
-    }
-    return result
+}
+
+func (self *GoApi) InstagramStory(url string) map[string]interface{} {
+    return self.Get("instagram/story/", map[string]string{
+        "url": url,
+    })
 }
