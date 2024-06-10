@@ -1,4 +1,4 @@
-package GoApi
+package goapi
 
 import (
   "io"
@@ -12,7 +12,7 @@ const (
     POST   = "POST"
 )
 
-func (self *GoApi) urlEncode(host, path string, data map[string]string) string {
+func (self *goapi) urlEncode(host, path string, data map[string]string) string {
     baseurl, _  := url.Parse(host)
     baseurl.Path = path
     params := url.Values{}

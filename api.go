@@ -1,4 +1,4 @@
-package GoApi
+package goapi
 
 import (
   "bytes"
@@ -6,20 +6,20 @@ import (
   "log"
 )
 
-type GoApi struct {
+type goapi struct {
     BaseURL string
     Apikey  string
 }
 
-func NewPsychopumpumApi(apikey string) *GoApi {
-    client := &GoApi{
+func NewPsychopumpumApi(apikey string) *goapi {
+    client := &goapi{
         BaseURL: "https://api.psychopumpum.fun/",
         Apikey : apikey,
     }
     return client
 }
 
-func (self *GoApi) Get(path string, params map[string]string) map[string]interface{} {
+func (self *goapi) Get(path string, params map[string]string) map[string]interface{} {
     fullUrl := self.urlEncode(self.BaseURL, path, params)
     client := NewServer(Options{
         Url: fullUrl,
@@ -38,19 +38,19 @@ func (self *GoApi) Get(path string, params map[string]string) map[string]interfa
     return result
 }
 
-func (self *GoApi) InstagramProfile(username string) map[string]interface{} {
+func (self *goapi) InstagramProfile(username string) map[string]interface{} {
     return self.Get("instagram/post/", map[string]string{
         "username": username,
     })
 }
 
-func (self *GoApi) InstagramPost(url string) map[string]interface{} {
+func (self *goapi) InstagramPost(url string) map[string]interface{} {
     return self.Get("instagram/post/", map[string]string{
         "url": url,
     })
 }
 
-func (self *GoApi) InstagramStory(url string) map[string]interface{} {
+func (self *goapi) InstagramStory(url string) map[string]interface{} {
     return self.Get("instagram/story/", map[string]string{
         "url": url,
     })
