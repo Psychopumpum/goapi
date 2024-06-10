@@ -59,7 +59,7 @@ func NewServer(opt Options) *Server {
     server := &Server{
         url: opt.Url,
         headers: opt.Headers,
-        Body: opt.Body,
+        body: opt.Body,
         client: client,
     }
     return server
