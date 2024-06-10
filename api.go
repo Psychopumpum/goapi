@@ -12,7 +12,7 @@ type GoApi struct {
 }
 
 func NewPsychopumpumApi(apikey string) *GoApi {
-    client := &PsychopumpumApi{
+    client := &GoApi{
         BaseURL: "https://api.psychopumpum.fun/",
         Apikey : apikey,
     }
