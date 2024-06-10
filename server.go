@@ -42,7 +42,7 @@ type ResponseReader struct {
     Response *http.Response
 }
 
-func NewServer(opt Options) *Server {
+func NewServer(opt  Options) *Server {
     var client *http.Client
     if opt.FollowRedirect {
         client = &http.Client{
