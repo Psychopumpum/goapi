@@ -42,11 +42,7 @@ type ResponseReader struct {
     Response *http.Response
 }
 
-func NewServer(opt *Options) *Server {
-    server        := new(Server)
-    server.url     = opt.Url
-    server.headers = opt.Headers
-    server.body    = opt.Body
+func NewServer(opt Options) *Server {
     var client *http.Client
     if opt.FollowRedirect {
         client = &http.Client{
@@ -60,7 +56,12 @@ func NewServer(opt *Options) *Server {
             Transport: &http.Transport{},
         }
     }
-    server.client = client
+    server := &Server{
+        url: opt.Url,
+        headers: opt.Headers,
+        Body: opt.Body,
+        client: client,
+    }
     return server
 }
 
