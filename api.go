@@ -21,7 +21,7 @@ func NewPsychopumpumApi(apikey string) *GoApi {
 
 func (self *GoApi) request(path string, params map[string]string) *Server {
     fullUrl := self.urlEncode(self.BaseURL, path, params)
-    server := NewServer(&Options{
+    server := NewServer(Options{
         Url: fullUrl,
         Headers: map[string]string{
             "Authorization": self.Apikey,
