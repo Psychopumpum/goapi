@@ -138,7 +138,7 @@ func (self *PsychopumpumApi) PornHubSearch(q, page string) map[string]interface{
     })
 }
 
-func (self *PsychopumpumApi) PornHubSearch(url string) map[string]interface{} {
+func (self *PsychopumpumApi) PornHubDownload(url string) map[string]interface{} {
     return self.Get("pornhub/download/", map[string]string{
         "url": url,
     })
