@@ -143,3 +143,30 @@ func (self *PsychopumpumApi) PornHubDownload(url string) map[string]interface{} 
         "url": url,
     })
 }
+
+// Twitter
+func (self *PsychopumpumApi) TwitterDownload(url string) map[string]interface{} {
+    return self.Get("twitter/download/", map[string]string{
+        "url": url,
+    })
+}
+
+// LINE
+func (self *PsychopumpumApi) LineVoom(url string) map[string]interface{} {
+    return self.Get("line/voom/", map[string]string{
+        "url": url,
+    })
+}
+
+// Smule
+func (self *PsychopumpumApi) SmuleProfile(username string) map[string]interface{} {
+    return self.Get("smule/profile/", map[string]string{
+        "username": username,
+    })
+}
+
+func (self *PsychopumpumApi) SmuleDownload(url string) map[string]interface{} {
+    return self.Get("smule/download/", map[string]string{
+        "url": url,
+    })
+}
