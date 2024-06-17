@@ -54,7 +54,7 @@ func (self *PsychopumpumApi) FacebookDownload(url string) map[string]interface{}
 
 // Instagram
 func (self *PsychopumpumApi) InstagramProfile(username string) map[string]interface{} {
-    return self.Get("instagram/post/", map[string]string{
+    return self.Get("instagram/profile/", map[string]string{
         "username": username,
     })
 }
@@ -168,5 +168,24 @@ func (self *PsychopumpumApi) SmuleProfile(username string) map[string]interface{
 func (self *PsychopumpumApi) SmuleDownload(url string) map[string]interface{} {
     return self.Get("smule/download/", map[string]string{
         "url": url,
+    })
+}
+
+// BMKG
+func (self *PsychopumpumApi) BMKG() map[string]interface{} {
+    return self.Get("info/bmkg/")
+}
+
+// Anime Search
+func (self *PsychopumpumApi) AnimeSearch(query string) map[string]interface{} {
+    return self.Get("anime/search/", map[string]string{
+        "q": query,
+    })
+}
+
+// Play Phrase
+func (self *PsychopumpumApi) PhraseSearch(query string) map[string]interface{} {
+    return self.Get("phrase/search/", map[string]string{
+        "q": query,
     })
 }
