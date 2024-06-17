@@ -145,6 +145,12 @@ func (self *PsychopumpumApi) PornHubDownload(url string) map[string]interface{} 
 }
 
 // Twitter
+func (self *PsychopumpumApi) TwitterProfile(username string) map[string]interface{} {
+    return self.Get("twitter/profile/", map[string]string{
+        "username": username,
+    })
+}
+
 func (self *PsychopumpumApi) TwitterDownload(url string) map[string]interface{} {
     return self.Get("twitter/download/", map[string]string{
         "url": url,
@@ -173,7 +179,7 @@ func (self *PsychopumpumApi) SmuleDownload(url string) map[string]interface{} {
 
 // BMKG
 func (self *PsychopumpumApi) BMKG() map[string]interface{} {
-    return self.Get("info/bmkg/")
+    return self.Get("info/bmkg/", map[string]string{})
 }
 
 // Anime Search
@@ -186,6 +192,6 @@ func (self *PsychopumpumApi) AnimeSearch(query string) map[string]interface{} {
 // Play Phrase
 func (self *PsychopumpumApi) PhraseSearch(query string) map[string]interface{} {
     return self.Get("phrase/search/", map[string]string{
-        "q": query,
+        "query": query,
     })
 }
