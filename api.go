@@ -4,6 +4,8 @@ import (
   "bytes"
   "encoding/json"
   "log"
+  "slices"
+  "strings"
 )
 
 type PsychopumpumApi struct {
@@ -47,7 +49,7 @@ func (self *PsychopumpumApi) OpenAi(text string) map[string]interface{} {
 
 // Facebook Downloader
 func (self *PsychopumpumApi) FacebookDownload(url string) map[string]interface{} {
-    return self.Get("fb/dl/", map[string]string{
+    return self.Get("facebook/download/", map[string]string{
         "url": url,
     })
 }
@@ -159,8 +161,26 @@ func (self *PsychopumpumApi) TwitterDownload(url string) map[string]interface{} 
 
 // LINE
 func (self *PsychopumpumApi) LineVoom(url string) map[string]interface{} {
-    return self.Get("line/voom/", map[string]string{
+    return self.Get("line/voom/info/", map[string]string{
         "url": url,
+    })
+}
+
+func (self *PsychopumpumApi) LoginWithQrCode(appType string) map[string]interface{} {
+    return self.Get("line/login/qrcode", map[string]string{
+        "appType": strings.ToUpper(appType),
+    })
+}
+
+func (self *PsychopumpumApi) LoginPinCode(session string) map[string]interface{} {
+    return self.Get("line/login/qrcode", map[string]string{
+        "session": session,
+    })
+}
+
+func (self *PsychopumpumApi) LoginGetToken(session string) map[string]interface{} {
+    return self.Get("line/login/token/", map[string]string{
+        "session": session,
     })
 }
 
@@ -179,12 +199,12 @@ func (self *PsychopumpumApi) SmuleDownload(url string) map[string]interface{} {
 
 // BMKG
 func (self *PsychopumpumApi) BMKG() map[string]interface{} {
-    return self.Get("info/bmkg/", map[string]string{})
+    return self.Get("bmkg/info/", map[string]string{})
 }
 
 // Anime Search
 func (self *PsychopumpumApi) AnimeSearch(query string) map[string]interface{} {
-    return self.Get("anime/search/", map[string]string{
+    return self.Get("anime/info/", map[string]string{
         "q": query,
     })
 }
@@ -192,6 +212,6 @@ func (self *PsychopumpumApi) AnimeSearch(query string) map[string]interface{} {
 // Play Phrase
 func (self *PsychopumpumApi) PhraseSearch(query string) map[string]interface{} {
     return self.Get("phrase/search/", map[string]string{
-        "query": query,
+        "q": query,
     })
 }
