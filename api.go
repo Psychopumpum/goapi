@@ -4,7 +4,6 @@ import (
   "bytes"
   "encoding/json"
   "log"
-  "slices"
   "strings"
 )
 
@@ -181,6 +180,13 @@ func (self *PsychopumpumApi) LoginPinCode(session string) map[string]interface{}
 func (self *PsychopumpumApi) LoginGetToken(session string) map[string]interface{} {
     return self.Get("line/login/token/", map[string]string{
         "session": session,
+    })
+}
+
+func (self *PsychopumpumApi) PrimaryToSecondary(authToken, appType string) map[string]interface{} {
+    return self.Get("line/primary/secondary/", map[string]string{
+        "authToken": authToken,
+        "appType": appType, // IOSIPAD, DESKTOPWIN, DESKTOPMAC, CHROMEOS, ANDROIDSECONDARY
     })
 }
 
