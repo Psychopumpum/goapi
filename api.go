@@ -167,7 +167,7 @@ func (self *PsychopumpumApi) LineVoom(url string) map[string]interface{} {
 
 func (self *PsychopumpumApi) LoginWithQrCode(appType string) map[string]interface{} {
     return self.Get("line/login/qrcode", map[string]string{
-        "appType": strings.ToUpper(appType),
+        "appType": strings.ToUpper(appType), // IOSIPAD, ANDROIDSECONDARY, DESKTOPWIN, DESKTOPMAC, CHROMEOS
     })
 }
 
@@ -183,10 +183,18 @@ func (self *PsychopumpumApi) LoginGetToken(session string) map[string]interface{
     })
 }
 
+func (self *PsychopumpumApi) LoginWithCredential(email, pwd, appType string) map[string]interface{} {
+    return self.Get("line/login/credential/", map[string]string{
+        "email": email,
+        "password": pwd,
+        "appType": strings.ToUpper(appType), // IOSIPAD, ANDROIDSECONDARY, DESKTOPWIN, DESKTOPMAC, CHROMEOS
+    })
+}
+
 func (self *PsychopumpumApi) PrimaryToSecondary(authToken, appType string) map[string]interface{} {
     return self.Get("line/primary/secondary/", map[string]string{
         "authToken": authToken,
-        "appType": appType, // IOSIPAD, DESKTOPWIN, DESKTOPMAC, CHROMEOS, ANDROIDSECONDARY
+        "appType": strings.ToUpper(appType), // IOSIPAD, ANDROIDSECONDARY, DESKTOPWIN, DESKTOPMAC, CHROMEOS
     })
 }
 
