@@ -229,3 +229,8 @@ func (self *PsychopumpumApi) PhraseSearch(query string) map[string]interface{} {
         "q": query,
     })
 }
+
+// Random Name
+func (self *PsychopumpumApi) RandomName() map[string]interface{} {
+    return self.Get("random/name/", map[string]string{})
+}
