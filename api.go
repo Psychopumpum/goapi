@@ -231,6 +231,8 @@ func (self *PsychopumpumApi) PhraseSearch(query string) map[string]interface{} {
 }
 
 // Random Name
-func (self *PsychopumpumApi) RandomName() map[string]interface{} {
-    return self.Get("random/name/", map[string]string{})
+func (self *PsychopumpumApi) RandomName(country string) map[string]interface{} {
+    return self.Get("random/name/", map[string]string{
+        "country": country, //Indonesia
+    })
 }
