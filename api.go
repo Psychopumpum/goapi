@@ -198,6 +198,20 @@ func (self *PsychopumpumApi) PrimaryToSecondary(authToken, appType string) map[s
     })
 }
 
+// LINE User
+func (self *PsychopumpumApi) GetUserInfo(mid string) map[string]interface{} {
+    return self.Get("line/user/info/", map[string]string{
+        "mid": mid,
+    })
+}
+
+func (self *PsychopumpumApi) UpdateUserName(mid, name string) map[string]interface{} {
+    return self.Get("line/user/name/", map[string]string{
+        "mid": mid,
+        "name": name,
+    })
+}
+
 // Smule
 func (self *PsychopumpumApi) SmuleProfile(username string) map[string]interface{} {
     return self.Get("smule/profile/", map[string]string{
