@@ -200,15 +200,9 @@ func (self *PsychopumpumApi) PrimaryToSecondary(authToken, appType string) map[s
 
 // LINE User
 func (self *PsychopumpumApi) GetUserInfo(mid string) map[string]interface{} {
-    return self.Get("line/user/info/", map[string]string{
+    // Host: https://psychopumpum.fun/user/get?mid=mid
+    return self.Get("/user/get", map[string]string{
         "mid": mid,
-    })
-}
-
-func (self *PsychopumpumApi) UpdateUserName(mid, name string) map[string]interface{} {
-    return self.Get("line/user/name/", map[string]string{
-        "mid": mid,
-        "name": name,
     })
 }
 
