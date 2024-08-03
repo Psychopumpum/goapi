@@ -12,9 +12,15 @@ type PsychopumpumApi struct {
     Apikey  string
 }
 
-func NewPsychopumpumApi(apikey string) *PsychopumpumApi {
+func NewPsychopumpumApi(apikey string, extract bool) *PsychopumpumApi {
+    var hostUrl string
+    if extract {
+        hostUrl = "https://psychopumpum.fun/"
+    } else {
+        hostUrl = "https//api.psychopumpum.fun/"
+    }
     client := &PsychopumpumApi{
-        BaseURL: "https://api.psychopumpum.fun/",
+        BaseURL: hostUrl,
         Apikey : apikey,
     }
     return client
@@ -201,7 +207,23 @@ func (self *PsychopumpumApi) PrimaryToSecondary(authToken, appType string) map[s
 // LINE User
 func (self *PsychopumpumApi) GetUserInfo(mid string) map[string]interface{} {
     // Host: https://psychopumpum.fun/user/get?mid=mid
-    return self.Get("/user/get", map[string]string{
+    /*
+    package main
+    
+    import (
+      api "github.com/psychopumpum/goapi"
+      "fmt"
+    )
+
+    func main() {
+      var apikey string
+      Api := api.NewPsychopumpumApi(apikey, true) // use true only to extract LINE User Data
+      fmt.Println(Api.GetUserInfo(INPUT_USER_MID)
+      Api  = api.NewPsychopumpumApi(apikey, false) // otherwise use false.
+      fmt.Println(Api.InstagramProfile("awkarin")
+    }
+    */
+    return self.Get("user/get", map[string]string{
         "mid": mid,
     })
 }
