@@ -53,48 +53,55 @@ func (self *PsychopumpumApi) OpenAi(text string) map[string]interface{} {
 }
 
 // Facebook Downloader
-func (self *PsychopumpumApi) FacebookDownload(url string) map[string]interface{} {
+func (self *PsychopumpumApi) FacebookDownload(url, flex string) map[string]interface{} {
     return self.Get("facebook/download/", map[string]string{
         "url": url,
+        "flex": flex,
     })
 }
 
 // Instagram
-func (self *PsychopumpumApi) InstagramProfile(username string) map[string]interface{} {
+func (self *PsychopumpumApi) InstagramProfile(username, flex string) map[string]interface{} {
     return self.Get("instagram/profile/", map[string]string{
         "username": username,
+        "flex": flex,
     })
 }
 
-func (self *PsychopumpumApi) InstagramPost(url string) map[string]interface{} {
+func (self *PsychopumpumApi) InstagramPost(url, flex string) map[string]interface{} {
     return self.Get("instagram/post/", map[string]string{
         "url": url,
+        "flex": flex,
     })
 }
 
-func (self *PsychopumpumApi) InstagramStory(url string) map[string]interface{} {
+func (self *PsychopumpumApi) InstagramStory(url, flex string) map[string]interface{} {
     return self.Get("instagram/story/", map[string]string{
         "url": url,
+        "flex": flex,
     })
 }
 
 // TikTok
-func (self *PsychopumpumApi) TikTokProfile(username string) map[string]interface{} {
+func (self *PsychopumpumApi) TikTokProfile(username, flex string) map[string]interface{} {
     return self.Get("tiktok/profile/", map[string]string{
         "username": username,
+        "flex": flex,
     })
 }
 
-func (self *PsychopumpumApi) TikTokDownload(url string) map[string]interface{} {
+func (self *PsychopumpumApi) TikTokDownload(url, flex string) map[string]interface{} {
     return self.Get("tiktok/download/", map[string]string{
         "url": url,
+        "flex": flex,
     })
 }
 
 // Pinterest 
-func (self *PsychopumpumApi) PinterestDownload(url string) map[string]interface{} {
+func (self *PsychopumpumApi) PinterestDownload(url, flex string) map[string]interface{} {
     return self.Get("pinterest/download/", map[string]string{
         "url": url,
+        "flex": flex,
     })
 }
 
@@ -111,9 +118,10 @@ func (self *PsychopumpumApi) PinterestSearch(q string) map[string]interface{} {
 }
 
 // YouTube
-func (self *PsychopumpumApi) YouTubeDownload(url string) map[string]interface{} {
+func (self *PsychopumpumApi) YouTubeDownload(url, flex string) map[string]interface{} {
     return self.Get("youtube/download/", map[string]string{
         "url": url,
+        "flex": flex,
     })
 }
 
