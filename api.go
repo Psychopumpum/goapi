@@ -12,13 +12,8 @@ type PsychopumpumApi struct {
     Apikey  string
 }
 
-func NewPsychopumpumApi(apikey string, extract bool) *PsychopumpumApi {
-    var hostUrl string
-    if extract {
-        hostUrl = "https://psychopumpum.fun/"
-    } else {
-        hostUrl = "https//api.psychopumpum.fun/"
-    }
+func NewPsychopumpumApi(apikey string) *PsychopumpumApi {
+    hostUrl := "https//api.psychopumpum.fun/"
     client := &PsychopumpumApi{
         BaseURL: hostUrl,
         Apikey : apikey,
@@ -209,6 +204,19 @@ func (self *PsychopumpumApi) PrimaryToSecondary(authToken, appType string) map[s
     return self.Get("line/primary/secondary/", map[string]string{
         "authToken": authToken,
         "appType": strings.ToUpper(appType), // IOSIPAD, ANDROIDSECONDARY, DESKTOPWIN, DESKTOPMAC, CHROMEOS
+    })
+}
+
+func (self *PsychopumpumApi) PrimaryToV3(authToken string) map[string]interface{} {
+    return self.Get("line/primary/v3/", map[string]string{
+        "authToken": authToken,
+    })
+}
+
+func (self *PsychopumpumApi) RefreshToken(authToken, refreshToken string) map[string]interface{} {
+    return self.Get("line/token/refresh/", map[string]string{
+        "authToken": authToken,
+        "refreshToken": refreshToken,
     })
 }
 
