@@ -13,7 +13,7 @@ type PsychopumpumApi struct {
 }
 
 func NewPsychopumpumApi(apikey string) *PsychopumpumApi {
-    hostUrl := "https//api.psychopumpum.fun/"
+    hostUrl := "https://api.psychopumpum.fun/"
     client := &PsychopumpumApi{
         BaseURL: hostUrl,
         Apikey : apikey,
